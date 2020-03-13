@@ -15,4 +15,3 @@ $charmeleon->attack('Flare', $pikachu);
 $pikachu->attack('Electric Ring', $charmeleon);
 $charmeleon->attack('Head Butt', $pikachu);
 $pikachu->attack('Electric Ring', $charmeleon);
-$charmeleon->attack('Flare', $pikachu);

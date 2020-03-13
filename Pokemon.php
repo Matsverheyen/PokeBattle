@@ -37,7 +37,6 @@ class Pokemon {
     $target->hitpoints -= $damage;
   }
 
-
   public function attack($move, $target) {
     if ($target->hitpoints <= 0) {
       echo $target->name . ' is dood! </br>';
@@ -46,21 +45,20 @@ class Pokemon {
         echo $this->name . ' is dood! </br>';
       } else {
         $index = array_search($move, array_column($this->attacks, 'move'));
-    $damage = $this->attacks[$index]->damage;
-    if ($this->energyType === $target->weakness->type) {
-      $dmg = $damage*$target->weakness->mulitplier;
-      $this->takeDamage($target, $dmg);
-    } elseif ($this->energyType === $target->resistance->type) {
-      $dmg = $damage/$target->resistance->mulitplier;
-      $this->takeDamage($target, $dmg);
-    } else {
-      $dmg = $damage;
-      $this->takeDamage($target, $dmg);
+        $damage = $this->attacks[$index]->damage;
+        if ($this->energyType === $target->weakness->type) {
+          $dmg = $damage*$target->weakness->mulitplier;
+          $this->takeDamage($target, $dmg);
+        } elseif ($this->energyType === $target->resistance->type) {
+          $dmg = $damage/$target->resistance->mulitplier;
+          $this->takeDamage($target, $dmg);
+        } else {
+          $dmg = $damage;
+          $this->takeDamage($target, $dmg);
+        }
+      echo "<strong>" . $this->name . "</strong> Attacked <strong>" . $target->name . "</strong> with: <strong>" . $move . "</strong> and did <strong>" . $dmg . "</strong> Damage!<br>";
+      echo $target->name . ' New hp: ' . $target->hitpoints . "<br><br>";
     }
-    echo "<strong>" . $this->name . "</strong> Attacked <strong>" . $target->name . "</strong> with: <strong>" . $move . "</strong> and did <strong>" . $dmg . "</strong> Damage!<br>";
-    echo $target->name . ' New hp: ' . $target->hitpoints . "<br><br>";
   }
-      }
 }
-
 }

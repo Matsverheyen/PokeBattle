@@ -1,0 +1,4 @@
+# Nmap 7.80 scan initiated Fri Mar 13 13:25:37 2020 as: nmap -sC -sV -oA davinci 10.9.24.242
+Host: 10.9.24.242 ()	Status: Up
+Host: 10.9.24.242 ()	Ports: 80/open/tcp//http//Apache httpd 2.4.41 ((Unix) OpenSSL|1.0.2p PHP|7.3.11)/, 443/open/tcp//ssl|http//Apache httpd 2.4.41 ((Unix) OpenSSL|1.0.2p PHP|7.3.11)/, 445/open/tcp//microsoft-ds?///, 3306/open/tcp//mysql//MySQL (unauthorized)/, 8080/open/tcp//http//Apache httpd 2.4.37 ((Unix))/	Ignored State: closed (995)
+# Nmap done at Fri Mar 13 13:26:25 2020 -- 1 IP address (1 host up) scanned in 48.13 seconds
