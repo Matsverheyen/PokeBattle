@@ -27,6 +27,14 @@ class Pokemon {
     }
   }
 
+  private function checkHp($target) {
+    if ($target->hitpoints < 0) {
+      return 0;
+    } else {
+      return $target->hitpoints;
+    }
+  }
+
   public function __set($property, $value) {
     if (property_exists($this, $property)) {
       $this->$property = $value;
@@ -57,7 +65,7 @@ class Pokemon {
           $this->takeDamage($target, $dmg);
         }
       echo "<strong>" . $this->name . "</strong> Attacked <strong>" . $target->name . "</strong> with: <strong>" . $move . "</strong> and did <strong>" . $dmg . "</strong> Damage!<br>";
-      echo $target->name . ' New hp: ' . $target->hitpoints . "<br><br>";
+      echo $target->name . ' New hp: ' . $this->checkHp($target) . "<br><br>";
     }
   }
 }
