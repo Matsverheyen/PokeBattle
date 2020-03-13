@@ -8,5 +8,7 @@ echo $pikachu->getDetails();
 echo '<br><br>';
 echo $charmeleon->getDetails();
 echo '<br><br>';
+echo $pikachu->name . '\'s HP: ' . $pikachu->hitpoints . '</br>';
+echo $charmeleon->name . '\'s HP: ' . $charmeleon->hitpoints . '</br></br>';
 $pikachu->attack('Pika Punch', $charmeleon);
 $charmeleon->attack('Flare', $pikachu);

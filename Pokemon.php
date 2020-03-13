@@ -1,4 +1,5 @@
 <?php
+
 class Pokemon {
   public $name; //string
   public $energyType; //string
@@ -16,36 +17,46 @@ class Pokemon {
     $this->resistance = $resistance;
   }
 
-  public function getWeakness() {
-    return $this->weakness;
-  }
-
-  public function getResistance() {
-    return $this->resistance;
-  }
-
   public function getDetails() {
     return json_encode($this);
   }
 
+  public function __get($property) {
+    if (property_exists($this, $property)) {
+      return $this->$property;
+    }
+  }
+
+  public function __set($property, $value) {
+    if (property_exists($this, $property)) {
+      $this->$property = $value;
+    }
+  }
+
+  private function takeDamage($target, $damage) {
+    $target->hitpoints -= $damage;
+  }
+
+
   public function attack($move, $target) {
-    echo $this->name . " Hp: " . $this->hitpoints . '<br>';
-    echo $target->name . " Hp: " . $target->hitpoints . '<br><br>';
+    if ($target->hitpoints <= 0) {
+      echo 'Pokemon is dood!';
+    } else {
     $index = array_search($move, array_column($this->attacks, 'move'));
     $damage = $this->attacks[$index]->damage;
-    $weakness = $target->getWeakness();
-    $resistance = $target->getResistance();
-    if ($this->energyType === $weakness->type) {
-      $damage = $damage*$weakness->mulitplier;
-      $target->hitpoints = $target->hitpoints - $damage;
-    } elseif ($this->energyType === $resistance->type) {
-      $damage = $damage/$resistance->mulitplier;
-      $target->hitpoints = $target->hitpoints - $damage;
+    if ($this->energyType === $target->weakness->type) {
+      $dmg = $damage*$target->weakness->mulitplier;
+      $this->takeDamage($target, $dmg);
+    } elseif ($this->energyType === $target->resistance->type) {
+      $dmg = $damage/$target->resistance->mulitplier;
+      $this->takeDamage($target, $dmg);
     } else {
-      $target->hitpoints = $target->hitpoints - $damage;
+      $dmg = $damage;
+      $this->takeDamage($target, $dmg);
     }
-    echo "<strong>" . $this->name . "</strong> Attacked <strong>" . $target->name . "</strong> with: <strong>" . $move . "</strong> and did <strong>" . $damage . "</strong> Damage!<br>";
+    echo "<strong>" . $this->name . "</strong> Attacked <strong>" . $target->name . "</strong> with: <strong>" . $move . "</strong> and did <strong>" . $dmg . "</strong> Damage!<br>";
     echo $target->name . ' New hp: ' . $target->hitpoints . "<br><br>";
   }
+}
 
 }
