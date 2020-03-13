@@ -12,3 +12,7 @@ echo $pikachu->name . '\'s HP: ' . $pikachu->hitpoints . '</br>';
 echo $charmeleon->name . '\'s HP: ' . $charmeleon->hitpoints . '</br></br>';
 $pikachu->attack('Pika Punch', $charmeleon);
 $charmeleon->attack('Flare', $pikachu);
+$pikachu->attack('Electric Ring', $charmeleon);
+$charmeleon->attack('Head Butt', $pikachu);
+$pikachu->attack('Electric Ring', $charmeleon);
+$charmeleon->attack('Flare', $pikachu);

@@ -40,9 +40,12 @@ class Pokemon {
 
   public function attack($move, $target) {
     if ($target->hitpoints <= 0) {
-      echo 'Pokemon is dood!';
+      echo $target->name . ' is dood! </br>';
     } else {
-    $index = array_search($move, array_column($this->attacks, 'move'));
+      if ($this->hitpoints <= 0) {
+        echo $this->name . ' is dood! </br>';
+      } else {
+        $index = array_search($move, array_column($this->attacks, 'move'));
     $damage = $this->attacks[$index]->damage;
     if ($this->energyType === $target->weakness->type) {
       $dmg = $damage*$target->weakness->mulitplier;
@@ -57,6 +60,7 @@ class Pokemon {
     echo "<strong>" . $this->name . "</strong> Attacked <strong>" . $target->name . "</strong> with: <strong>" . $move . "</strong> and did <strong>" . $dmg . "</strong> Damage!<br>";
     echo $target->name . ' New hp: ' . $target->hitpoints . "<br><br>";
   }
+      }
 }
 
 }
